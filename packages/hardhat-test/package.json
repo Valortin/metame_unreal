@@ -1,0 +1,28 @@
+{
+  "name": "@typechain/hardhat-test",
+  "private": true,
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "format": "prettier --config ../../.prettierrc --ignore-path ../../.prettierignore --check \"./**/*.ts\"",
+    "format:fix": "prettier --config ../../.prettierrc --ignore-path ../../.prettierignore --write \"./**/*.ts\"",
+    "lint": "echo ok",
+    "lint:fix": "echo ok",
+    "typecheck": "tsc --noEmit --incremental false --composite false && tsc --noEmit --incremental false --composite false -p tsconfig.types.json",
+    "clean": "rm -rf ./artifacts ./cache typechain-types && rm -f tsconfig.build.tsbuildinfo && rm -rf build",
+    "generate-types": "hardhat clean && hardhat compile",
+    "test": "pnpm generate-types && mocha --config ../../.mocharc.js",
+    "test:fix": "pnpm lint:fix && pnpm format:fix && pnpm test && pnpm typecheck"
+  },
+  "devDependencies": {
+    "@ethersproject/providers": "^5.4.7",
+    "@ethersproject/abi": "^5.4.7",
+    "@nomicfoundation/hardhat-ethers": "^3.0.0",
+    "@typechain/ethers-v6": "workspace:^0.5.1",
+    "@typechain/hardhat": "workspace:^9.1.0",
+    "ethers": "~6.3.0",
+    "hardhat": "^2.9.9",
+    "test-utils": "1.0.0",
+    "typechain": "workspace:^8.3.2"
+  }
+}
